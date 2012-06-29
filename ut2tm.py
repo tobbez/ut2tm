@@ -27,7 +27,7 @@ from shutil import copy2
 def migrate_to_transmission(srcdir, dstdir, name, utresume):
     dl_name = ntpath.basename(utresume['path'])
     paused = 0
-    if dl_name != name:
+    if dl_name != name[:-8]:
         print('Warning: Transmission does not support changing target name, pausing {}'.format(name))
         paused = 1
     tmresume = {
