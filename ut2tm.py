@@ -34,7 +34,7 @@ def migrate_to_transmission(srcdir, dstdir, name, utresume):
             'activity-date': utresume['last_active'],
             'added-date': utresume['added_on'],
             'bandwidth-priority': 0,
-            'corrupt': 0,
+            'corrupt': utresume['waste'],
             'destination': ntpath.dirname(utresume['path']),
             'dnd': len(utresume['prio']) * [0], # TODO: figure out what the values in the prio string means
             'done-date': utresume['completed_on'],
