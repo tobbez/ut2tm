@@ -1,0 +1,22 @@
+ut2tm is a script for migrating µTorrent resume data to transmission.
+
+ * The script takes two paths as arguments, your µTorrent data
+   directory (%appdata%\uTorrent - copy it to your linux system)
+   and an output directory (usually ~/.config/transmission-daemon).
+   The output directory will be created if it does not exist.
+
+ * If you need to change the base download directory, it is recommended
+   to do so before using this tool, using search & replace in BEncode
+   Editor (https://sites.google.com/site/ultimasites/bencode-editor/).
+
+ * Dependencies: python, pyrobase (easy_install pyrobase)
+
+Issues/Limitations:
+
+ * Currently, there is only support for µTorrent for Windows.
+
+ * Transmission does not support changing the name of the downloaded
+   file/directory. Torrents where this has been done will be forcibly
+   paused.
+
+ * Priorities (and skipped files) are currently not transferred.
