@@ -25,6 +25,18 @@ from pyrobase.bencode import bencode, bdecode
 from shutil import copy2
 
 def migrate_to_transmission(srcdir, dstdir, name, utresume):
+    def dnd_map(val):
+        return val == 0x00
+    def priority_map(val):
+        # low
+        if val == 0x04:
+            return -1
+        # high
+        elif val == 0x0C:
+            return 1
+        # normal & do not download
+        return 0
+
     dl_name = ntpath.basename(utresume['path'])
     paused = 0
     if dl_name != name[:-8]:
@@ -36,7 +48,7 @@ def migrate_to_transmission(srcdir, dstdir, name, utresume):
             'bandwidth-priority': 0,
             'corrupt': utresume['waste'],
             'destination': ntpath.dirname(utresume['path']),
-            'dnd': len(utresume['prio']) * [0], # TODO: figure out what the values in the prio string means
+            'dnd': map(dnd_map, utresume['prio']),
             'done-date': utresume['completed_on'],
             'downloaded': utresume['downloaded'],
             'downloading-time-seconds': 0,
@@ -45,7 +57,7 @@ def migrate_to_transmission(srcdir, dstdir, name, utresume):
             'paused': paused or not utresume['started'],
             'peers2': 0,
             'peers2-6': 0,
-            'priority': len(utresume['prio']) * [0], # see notes for the dnd key
+            'priority': map(priority_map, utresume['prio']),
             'progress': {'blocks': 'all', 'have': 'all', 'time-checked': len(utresume['prio']) * [0]},
             'ratio-limit': {'ratio-limit': utresume['wanted_ratio']//10, 'ratio-mode': 0},
             'seeding-time-seconds': utresume['seedtime'],

@@ -18,5 +18,3 @@ Issues/Limitations:
  * Transmission does not support changing the name of the downloaded
    file/directory. Torrents where this has been done will be forcibly
    paused.
-
- * Priorities (and skipped files) are currently not transferred.
