@@ -42,7 +42,7 @@ def migrate_to_transmission(srcdir, dstdir, name, utresume):
             'downloading-time-seconds': 0,
             'idle-limit': {'idle-limit': 30, 'idle-mode': 0},
             'max-peers': 75,
-            'paused': paused, # TODO: map to the 'started' value when not forcing paused state
+            'paused': paused or not utresume['started'],
             'peers2': 0,
             'peers2-6': 0,
             'priority': len(utresume['prio']) * [0], # see notes for the dnd key
