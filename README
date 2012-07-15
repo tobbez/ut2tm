@@ -9,7 +9,7 @@ ut2tm is a script for migrating µTorrent resume data to transmission.
    to do so before using this tool, using search & replace in BEncode
    Editor (https://sites.google.com/site/ultimasites/bencode-editor/).
 
- * Dependencies: python, pyrobase (easy_install pyrobase)
+ * Dependencies: python, pyrobase (`pip install pyrobase`)
 
 Issues/Limitations:
 
